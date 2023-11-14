@@ -1,70 +1,47 @@
-let transactions =
-[
-    {
-        id: 3442,
-        type: "income",
-        amount: 4000,
-        detail: "salary"
-    }
-];
- 
-let state= 
-{
-    income:0,
-    expense:0,
-    balance:0,
+//init values
+let incomeTransaction = 0;
+let expenseTransaction = 0;
+let balanceTransaction = 0;
 
-    transactions :  
-    [
-        { id: 3442, type: "income", amount: 4000, detail: "salary"},
-        { id: 8434, type: "income", amount: 2000, detail: "transport"}, 
-        { id: 9442, type: "income", amount: 2600, detail: "rent"},
+//glolbal state variables
+let state = {
+    income: 0,
+    expense: 0,
+    balance: 0,
+    transactions: [
+        { id: 1, type: "income", amount: 10, detail: "salary" },
+        { id: 2, type: "expense", amount: 5, detail: "transport" },
+        { id: 3, type: "expense", amount: 1, detail: "rent" }
     ]
-}   
-
-//DOM - connecting to the UI
-
-const income = document.getElementById('income')
-const expense = document.getElementById('expense')
-const balance = document.getElementById('balance')
-
-income.innerHTML = 'R' + 2000
+}
 
 
-function calculate ()
-{
-    let incomeTransaction, expenseTransaction, balanceTransaction = o;
+//calculator
+function calculate() {
+    for (let i = 0; i < state.transactions.length; i++) {
 
-    for (let i =0; i < state.transactions; i++)
-    {
-        let transaction = state.transactions[i];
-
-        if(transaction.type == 'income')
-        
-        {
-            incomeTransaction +=  transaction.amount;
+        if (state.transactions[i].type == 'income') {
+            incomeTransaction += state.transactions[i].amount
         }
 
-        else if(transaction.type == 'income')
-        {
-            expenseTransaction +=  transaction.amount; 
+        if (state.transactions[i].type == 'expense') {
+            expenseTransaction += state.transactions[i].amount
         }
     }
-
-    balanceTransaction = incomeTransaction - expenseTransaction;
-
+    balanceTransaction = incomeTransaction - expenseTransaction
 }
 
-
-function display ()
-{
-    income.innerHTML= 'R' + incomeTransaction,
-    expense.innerHTML= 'R' + expenseTransaction,
-    balance.innerHTML= 'R' + balanceTransaction
+//displaying values
+function display() {
+    document.getElementById('income').innerHTML = 'R' + incomeTransaction
+    document.getElementById('expense').innerHTML = 'R' + expenseTransaction
+    document.getElementById('balance').innerHTML = 'R' + balanceTransaction
 }
 
-function render()
-{
-    calculate(),
+function render() {
+    calculate()
     display()
+    console.log("sanibonani world")
 }
+
+render()``
